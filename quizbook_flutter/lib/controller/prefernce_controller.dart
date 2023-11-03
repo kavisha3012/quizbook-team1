@@ -6,7 +6,6 @@ class PreferenceController {
   static const String prefKeyIsLoggedIn = "IsLogin";
   static const String prefKeyUserId = "UserId";
   static const String prefKeyLoginType = "LoginType";
-
   static const String prefKeyLanguage = "SelectedLanguage";
   static const loginTypeNormal = 'Normal';
   static const loginTypeGoogle = 'Google';
@@ -27,7 +26,7 @@ class PreferenceController {
       prefs!.remove(prefKeyUserId);
       prefs!.remove(apiToken);
       prefs!.remove(prefKeyLanguage);
-      prefs!.remove(prefKeyLoginType);
+      prefs!.remove(prefKeyLoginType); 
     }
   }
 

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import '../widgets/progress_indicator.dart';
 
 class Utility {
@@ -34,5 +35,36 @@ class Utility {
 
   static void hideDialog(BuildContext context) {
     Navigator.pop(context);
+  }
+
+  static Future<DateTime?> showDatePickerDialog() async {
+    DateTime? selectedDate;
+    try {
+      selectedDate = await showDatePicker(
+        context: Get.context!,
+        errorFormatText: 'Error occurred',
+        cancelText: 'Close',
+        confirmText: 'Select',
+        errorInvalidText: 'Invalid text',
+        fieldHintText: 'Hint text',
+        fieldLabelText: 'Please select date',
+        helpText: 'Help text',
+        keyboardType: TextInputType.number,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2023, 01, 01),
+        lastDate: DateTime.now(),
+      );
+      print(selectedDate.toString());
+    } catch (e) {
+      print(e.toString());
+    }
+    // print(selectedDate.toString());
+    return selectedDate;
+  }
+
+  static bool isEmailValid(String email) {
+    return RegExp(
+            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+        .hasMatch(email);
   }
 }
