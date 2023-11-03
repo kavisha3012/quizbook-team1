@@ -126,13 +126,16 @@ class SignUpScreen extends StatelessWidget {
                         children: [
                           Text('Gender',
                               style: TextStyle(fontSize: 13)), // Add the label
-                          Obx(
-                            () => CommonDropDown(
-                              items: const ["Male", "Female", "Other"],
-                              selectedItem: _controller.selectedGender.value,
-                              onChange: (newVal) {
-                                _controller.changeGender(newVal!);
-                              },
+                          Container(
+                            width: 200,
+                            child: Obx(
+                              () => CommonDropDown(
+                                items: const ["Male", "Female", "Other"],
+                                selectedItem: _controller.selectedGender.value,
+                                onChange: (newVal) {
+                                  _controller.changeGender(newVal!);
+                                },
+                              ),
                             ),
                           ),
                         ],
