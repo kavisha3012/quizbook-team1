@@ -53,6 +53,7 @@ class SignUpScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: CommonTextFormField(
+                    autoFocus: true,
                     controller: _firstNameController,
                     label: 'First Name',
                     errorMessage: 'Enter Your First Name',
@@ -118,13 +119,10 @@ class SignUpScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Column(
-                        crossAxisAlignment:
-                            CrossAxisAlignment.start, // Align label to the left
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Gender',
-                              style: TextStyle(
-                                  fontSize: 13,
-                                  color: purpleColor)), // Add the label
+                              style: TextStyle(fontSize: 13, color: greyColor)),
                           Container(
                             width: 200,
                             child: Obx(
@@ -153,7 +151,7 @@ class SignUpScreen extends StatelessWidget {
                         child: InputDecorator(
                             decoration: InputDecoration(
                                 labelText: 'BirthDate',
-                                labelStyle: TextStyle(color: purpleColor)),
+                                labelStyle: TextStyle(color: greyColor)),
                             child: Obx(() =>
                                 Text(_controller.selectedBirthDate.value))),
                       ),
@@ -168,7 +166,8 @@ class SignUpScreen extends StatelessWidget {
                       CrossAxisAlignment.start, // Align label to the left
                   children: [
                     Text('Designation',
-                        style: TextStyle(fontSize: 13)), // Add the label
+                        style: TextStyle(
+                            fontSize: 13, color: greyColor)), // Add the label
                     Obx(
                       () => CommonDropDown(
                         items: ["Teacher", "English", "hindi"],

@@ -19,6 +19,7 @@ class CommonTextFormField extends StatelessWidget {
   final VoidCallback onTap;
   final bool isEmailField;
   final bool initialValue;
+  final bool autoFocus;
 
   final List<TextInputFormatter> formatter;
   final bool isMobileNumber;
@@ -41,32 +42,34 @@ class CommonTextFormField extends StatelessWidget {
     this.isEmailField = false,
     this.isReadOnly = false,
     this.initialValue = false,
+    this.autoFocus = false,
   });
 
   final TextStyle labelStyle = TextStyle(
     fontSize: 14,
-    color: Colors.grey,
+    color: greyColor,
     fontWeight: FontWeight.w500,
   );
   final TextStyle hintStyle = TextStyle(
     fontSize: 14,
-    color: Colors.grey,
+    color: greyColor,
     fontWeight: FontWeight.w500,
   );
   final TextStyle textStyle = TextStyle(
     fontSize: 14,
-    color: Colors.grey,
+    color: greyColor,
     fontWeight: FontWeight.w500,
   );
 
   final InputBorder border = UnderlineInputBorder(
-      borderSide: const BorderSide(color: inputBorderColor, width: 0.0));
+      borderSide: const BorderSide(color: greyColor, width: 0.0));
   final InputBorder errorBorder = UnderlineInputBorder(
       borderSide: const BorderSide(color: inputBorderColorError, width: 0.0));
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autofocus: autoFocus,
       onTap: onTap,
       readOnly: isReadOnly,
       autovalidateMode: AutovalidateMode.onUserInteraction,

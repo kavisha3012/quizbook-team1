@@ -51,18 +51,17 @@ class LoginScreen extends StatelessWidget {
             child: Form(
               key: _key,
               child: CommonTextFormField(
+                autoFocus: true,
                 controller: _controller.mobileController,
                 label: 'Mobile Number',
                 errorMessage: 'Please enter valid Number',
                 inputType: TextInputType.number,
                 formatter: [mobileNumberFormater, mobileLengthFormatter],
-
                 onTap: () {},
                 isMobileNumber: true,
                 isDropDown: false,
                 // isReadOnly: false,
                 textInputAction: '',
-                suffixIcon: 'assets/images/down_black.png',
               ),
             ),
           ),
