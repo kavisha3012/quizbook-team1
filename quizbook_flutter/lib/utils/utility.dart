@@ -41,19 +41,18 @@ class Utility {
     DateTime? selectedDate;
     try {
       selectedDate = await showDatePicker(
-        context: Get.context!,
-        errorFormatText: 'Error occurred',
-        cancelText: 'Close',
-        confirmText: 'Select',
-        errorInvalidText: 'Invalid text',
-        fieldHintText: 'Hint text',
-        fieldLabelText: 'Please select date',
-        helpText: 'Help text',
-        keyboardType: TextInputType.number,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(2023, 01, 01),
-        lastDate: DateTime.now(),
-      );
+          context: Get.context!,
+          errorFormatText: 'Error occurred',
+          cancelText: 'Close',
+          confirmText: 'Select',
+          errorInvalidText: 'Invalid text',
+          fieldHintText: 'Hint text',
+          fieldLabelText: 'Please select date',
+          helpText: 'Help text',
+          keyboardType: TextInputType.number,
+          initialDate: DateTime.now(),
+          firstDate: DateTime(2023, 01, 01),
+          lastDate: DateTime(2025, 01, 01));
       print(selectedDate.toString());
     } catch (e) {
       print(e.toString());

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 const String bgImage = 'assets/images/bg.png';
 const String imgLogo = 'assets/images/logo.png';
+const String changeProfile = 'assets/images/add_pic_icon.png';
 
 //common colors
 const Color inputBorderColor = Colors.grey;

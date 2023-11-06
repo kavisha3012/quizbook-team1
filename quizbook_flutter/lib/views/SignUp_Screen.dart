@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/otp_verification_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../widgets/common_appbar.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -39,8 +38,6 @@ class SignUpScreen extends StatelessWidget {
           title: 'Update Profile',
           backgroundColor: whiteColor, // Customize the color here
           centerTitle: true,
-
-          // Customize the title alignment if needed
         ),
       ),
       body: SingleChildScrollView(
@@ -52,7 +49,7 @@ class SignUpScreen extends StatelessWidget {
                 SizedBox(
                   height: 18,
                 ),
-                Image.asset('assets/images/add_pic_icon.png', height: 120),
+                Image.asset(changeProfile, height: 120),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: CommonTextFormField(
@@ -125,7 +122,9 @@ class SignUpScreen extends StatelessWidget {
                             CrossAxisAlignment.start, // Align label to the left
                         children: [
                           Text('Gender',
-                              style: TextStyle(fontSize: 13)), // Add the label
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  color: purpleColor)), // Add the label
                           Container(
                             width: 200,
                             child: Obx(
@@ -153,8 +152,8 @@ class SignUpScreen extends StatelessWidget {
                         },
                         child: InputDecorator(
                             decoration: InputDecoration(
-                              labelText: 'BirthDate',
-                            ),
+                                labelText: 'BirthDate',
+                                labelStyle: TextStyle(color: purpleColor)),
                             child: Obx(() =>
                                 Text(_controller.selectedBirthDate.value))),
                       ),
