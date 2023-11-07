@@ -112,7 +112,7 @@ class SignUpScreen extends StatelessWidget {
                     onTap: () {},
                     isMobileNumber: true,
                     textInputAction: '',
-                    isReadOnly: true,
+                    // isReadOnly: true,
                   ),
                 ),
                 Row(
