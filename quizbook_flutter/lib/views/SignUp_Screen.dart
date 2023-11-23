@@ -107,7 +107,7 @@ class SignUpScreen extends StatelessWidget {
                     label: 'Mobile Number',
                     errorMessage: 'Please enter valid Number',
                     inputType: TextInputType.number,
-                    formatter: [],
+                    formatter: [mobileLengthFormatter, mobileNumberFormater],
                     length: 10,
                     onTap: () {},
                     isMobileNumber: true,

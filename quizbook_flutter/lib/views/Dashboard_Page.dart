@@ -8,10 +8,10 @@ import 'package:get/get_core/src/get_main.dart';
 
 class DashboardScreen extends StatelessWidget {
   final DashboardController _controller = Get.put(DashboardController());
-  final RxInt _currentIndex = 0.obs; // Use RxInt for reactive updates
+  final RxInt _currentIndex = 0.obs;
 
   void onTabTapped(int index) {
-    _currentIndex.value = index; // Update the RxInt value
+    _currentIndex.value = index;
   }
 
   @override

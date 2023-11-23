@@ -50,10 +50,10 @@ class QuestionScreen extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                OptionCard('A: Gujrat'),
-                OptionCard('B: Maharstra'),
-                OptionCard('C: Rajsthan'),
-                OptionCard('D: Panjab'),
+                OptionCard('A: Gujarat'),
+                OptionCard('B: Maharastra'),
+                OptionCard('C: Rajasthan'),
+                OptionCard('D: Punjab'),
               ],
             ),
           ),

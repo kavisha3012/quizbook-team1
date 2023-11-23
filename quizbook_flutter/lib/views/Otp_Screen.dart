@@ -1,4 +1,9 @@
+import 'package:animaed/utils/constants.dart';
+import 'package:animaed/views/SignUp_Screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class OTPScreen extends StatefulWidget {
   @override
@@ -6,7 +11,9 @@ class OTPScreen extends StatefulWidget {
 }
 
 class _OTPScreenState extends State<OTPScreen> {
+  final _key = GlobalKey<FormState>();
   final TextEditingController otpController = TextEditingController();
+  final TextEditingController _mobileController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,27 +35,38 @@ class _OTPScreenState extends State<OTPScreen> {
               SizedBox(height: 20),
               Container(
                 width: 200,
-                child: TextField(
-                  controller: otpController,
-                  keyboardType: TextInputType.number,
-                  maxLength: 4,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter OTP',
+                child: Form(
+                  key: _key,
+                  child: TextFormField(
+                    textInputAction: TextInputAction.next,
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    autofocus: true,
+                    controller: otpController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    keyboardType: TextInputType.number,
+                    maxLength: 4,
+                    decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: purpleColor), // Change the color here
+                        ),
+                        border: OutlineInputBorder(),
+                        labelText: 'Enter OTP',
+                        labelStyle: TextStyle(color: purpleColor)),
                   ),
                 ),
               ),
               SizedBox(height: 20),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: purpleColor),
                 onPressed: () {
+                  Get.to(SignUpScreen(
+                    mobileNumber: _mobileController.text,
+                  ));
                   //  OTP verification logic here
-                  String enteredOTP = otpController.text;
-                  if (enteredOTP.length == 4) {
-                    // Perform OTP verification here
-                    // You can compare the entered OTP with the actual OTP sent to the user
-                  } else {
-                    // Show an error message or handle incomplete OTP
-                  }
+                  // String enteredOTP = otpController.text;
+                  // if (enteredOTP.length == 4) {
+                  // } else {}
                 },
                 child: Text('Verify OTP'),
               ),
@@ -57,11 +75,5 @@ class _OTPScreenState extends State<OTPScreen> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    otpController.dispose();
-    super.dispose();
   }
 }

@@ -1,6 +1,7 @@
 import 'package:animaed/controller/otp_verification_controller.dart';
 import 'package:animaed/utils/constants.dart';
 import 'package:animaed/utils/utility.dart';
+import 'package:animaed/views/Otp_Screen.dart';
 import 'package:animaed/views/SignUp_Screen.dart';
 import 'package:animaed/widgets/common_button.dart';
 import 'package:animaed/widgets/common_textfield.dart';
@@ -71,7 +72,9 @@ class LoginScreen extends StatelessWidget {
           onPress: () async {
             if (_key.currentState!.validate()) {
               _controller.verifyOtp();
-              Get.to(SignUpScreen(mobileNumber: _mobileController.text));
+              Get.to(OTPScreen());
+
+              // Get.to(SignUpScreen(mobileNumber: _mobileController.text));
             }
           },
           title: 'SEND OTP'),
