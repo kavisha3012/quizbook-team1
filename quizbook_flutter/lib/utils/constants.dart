@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 const String bgImage = 'assets/images/bg.png';
 const String imgLogo = 'assets/images/logo.png';
 const String changeProfile = 'assets/images/add_pic_icon.png';
+const String trophyImage = 'assets/images/trophy.png';
 
 //common colors
 const Color greyColor = Colors.grey;

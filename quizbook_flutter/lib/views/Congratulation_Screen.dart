@@ -24,7 +24,7 @@ class CongratulationScreen extends StatelessWidget {
               SizedBox(
                 height: 100,
               ),
-              Image.asset('assets/images/trophy.png', scale: 3.5),
+              Image.asset(trophyImage, scale: 3.5),
               SizedBox(
                 height: 20,
               ),
@@ -43,6 +43,7 @@ class CongratulationScreen extends StatelessWidget {
                 height: 15,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
                     width: 60,
@@ -64,9 +65,57 @@ class CongratulationScreen extends StatelessWidget {
                       child: Text('5 Incorrect  ')),
                 ],
               ),
-              CommonButton(
-                onPress: () {},
-                title: 'View the result',
+              // CommonButton(
+              //   onPress: () {},
+              //   title: 'View the result',
+              // ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                  width: 1200,
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(whiteColor),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0),
+                                      side: BorderSide(color: whiteColor)))),
+                      onPressed: () {},
+                      child: Text(
+                        'View the result',
+                        style: TextStyle(color: purpleColor),
+                      ))),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                  width: 1200,
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(purpleColor),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0),
+                                      side: BorderSide(color: whiteColor)))),
+                      onPressed: () {},
+                      child: Text(
+                        'Start a new quiz',
+                        style: TextStyle(color: whiteColor),
+                      ))),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Give Feddback',
+                style: TextStyle(
+                  color: whiteColor,
+                  decoration: TextDecoration.underline,
+                ),
               )
             ]),
       ),
