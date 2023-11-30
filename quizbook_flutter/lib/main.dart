@@ -20,6 +20,6 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        home: CongratulationScreen());
+        home: LoginScreen());
   }
 }

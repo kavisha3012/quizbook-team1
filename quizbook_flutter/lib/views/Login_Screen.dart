@@ -1,83 +1,74 @@
-import 'package:animaed/controller/otp_verification_controller.dart';
-import 'package:animaed/utils/constants.dart';
-import 'package:animaed/utils/utility.dart';
-import 'package:animaed/views/Otp_Screen.dart';
-import 'package:animaed/views/SignUp_Screen.dart';
-import 'package:animaed/widgets/common_button.dart';
-import 'package:animaed/widgets/common_textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import '../controller/otp_verification_controller.dart';
+import '../utils/constants.dart';
+import '../widgets/common_button.dart';
+import '../widgets/common_textfield.dart';
+import 'Otp_Screen.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
   final _key = GlobalKey<FormState>();
-  final OTPController _controller = Get.put(OTPController());
+  // final OTPController _controller = Get.put(OTPController());
   final TextEditingController _mobileController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          Container(
-            alignment: Alignment.center,
-            height: 300,
-            width: double.infinity,
-            child: Stack(
-              children: [
-                Image.asset(
-                  bgImage,
-                  height: 400,
-                  width: double.infinity,
-                  fit: BoxFit.fill,
-                ),
-                Positioned(
-                  bottom: 50,
-                  left: MediaQuery.of(context).size.width / 2.9,
-                  child: Image.asset(
+        body: Stack(
+          children: [
+            Positioned(
+                left: 0,
+                right: 0,
+                child: Image.asset(bgImage, fit: BoxFit.fill)),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
                     imgLogo,
-                    fit: BoxFit.fill,
-                    height: 100,
-                    width: 100,
                   ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Form(
-              key: _key,
-              child: CommonTextFormField(
-                autoFocus: true,
-                controller: _controller.mobileController,
-                label: 'Mobile Number',
-                errorMessage: 'Please enter valid Number',
-                inputType: TextInputType.number,
-                formatter: [mobileNumberFormater, mobileLengthFormatter],
-                onTap: () {},
-                isMobileNumber: true,
-                isDropDown: false,
-                // isReadOnly: false,
-                textInputAction: '',
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Form(
+                    key: _key,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CommonTextFormField(
+                        autoFocus: true,
+                        hint: 'Enter Your Mobile Number',
+                        controller: _mobileController,
+                        label: 'Mobile Number',
+                        errorMessage: 'Please enter valid Number',
+                        inputType: TextInputType.number,
+                        formatter: [
+                          mobileNumberFormater,
+                          mobileLengthFormatter
+                        ],
+                        onTap: () {},
+                        isMobileNumber: true,
+                        // isReadOnly: false,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 300,
+                  ),
+                ],
               ),
             ),
-          ),
-        ],
-      ),
-      bottomNavigationBar: CommonButton(
-          onPress: () async {
-            if (_key.currentState!.validate()) {
-              _controller.verifyOtp();
-              Get.to(OTPScreen());
-
-              // Get.to(SignUpScreen(mobileNumber: _mobileController.text));
-            }
-          },
-          title: 'SEND OTP'),
-    );
+          ],
+        ),
+        bottomNavigationBar: CommonButton(
+            onPress: () async {
+              if (_key.currentState!.validate()) {
+                // _controller.verifyOtp();
+                Get.to(() => OTPScreen());
+              }
+            },
+            title: 'Send OTP'));
   }
 }

@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
 class SignUpController extends GetxController {
-  final RxString selectedGender = 'Male'.obs;
+  final RxString selectedGender = 'Select Gender'.obs;
   final RxString selectedBirthDate = 'Select Date'.obs;
-  final RxString selectedDesignation = 'Teacher'.obs;
+  final RxString selectedDesignation = 'Select Designation'.obs;
 
   // Function to change the selected gender
   void changeGender(String gender) {

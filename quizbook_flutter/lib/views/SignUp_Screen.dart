@@ -1,16 +1,15 @@
-import 'package:animaed/controller/signup_screen_Controller.dart';
-import 'package:animaed/utils/constants.dart';
-import 'package:animaed/utils/utility.dart';
-import 'package:animaed/views/Dashboard_Page.dart';
-import 'package:animaed/views/Question_Screen.dart';
-import 'package:animaed/widgets/common_button.dart';
-import 'package:animaed/widgets/common_dropdown.dart';
-import 'package:animaed/widgets/common_textfield.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/otp_verification_controller.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../controller/signup_screen_Controller.dart';
+import '../utils/constants.dart';
+import '../utils/utility.dart';
 import '../widgets/common_appbar.dart';
+import '../widgets/common_button.dart';
+import '../widgets/common_dropdown.dart';
+import '../widgets/common_textfield.dart';
+import 'CheptorName_Screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   final _key = GlobalKey<FormState>();
@@ -61,11 +60,7 @@ class SignUpScreen extends StatelessWidget {
                     formatter: [],
                     length: 60,
                     onTap: () {},
-                    textInputAction: '',
                   ),
-                ),
-                SizedBox(
-                  height: 01,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -77,11 +72,7 @@ class SignUpScreen extends StatelessWidget {
                     formatter: [],
                     length: 60,
                     onTap: () {},
-                    textInputAction: '',
                   ),
-                ),
-                SizedBox(
-                  height: 01,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -94,11 +85,7 @@ class SignUpScreen extends StatelessWidget {
                     length: 60,
                     onTap: () {},
                     isEmailField: true,
-                    textInputAction: '',
                   ),
-                ),
-                SizedBox(
-                  height: 01,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -111,73 +98,95 @@ class SignUpScreen extends StatelessWidget {
                     length: 10,
                     onTap: () {},
                     isMobileNumber: true,
-                    textInputAction: '',
                     // isReadOnly: true,
                   ),
                 ),
                 Row(
                   children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Gender',
-                              style: TextStyle(fontSize: 13, color: greyColor)),
-                          Container(
-                            width: 200,
-                            child: Obx(
-                              () => CommonDropDown(
-                                items: const ["Male", "Female", "Other"],
-                                selectedItem: _controller.selectedGender.value,
-                                onChange: (newVal) {
-                                  _controller.changeGender(newVal!);
-                                },
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Gender',
+                              style: TextStyle(color: greyColor),
+                            ),
+                            Container(
+                              width: 900,
+                              child: Obx(
+                                () => CommonDropDown(
+                                    items: const [
+                                      "Select Gender",
+                                      "Male",
+                                      "Female",
+                                      "Other"
+                                    ],
+                                    selectedItem:
+                                        _controller.selectedGender.value,
+                                    onChange: (newVal) {
+                                      if (newVal != "Select Gender") {
+                                        _controller.changeGender(newVal!);
+                                      }
+                                    }),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                     Expanded(
-                      child: InkWell(
-                        onTap: () {
-                          Utility.showDatePickerDialog().then((pickedDate) {
-                            if (pickedDate != null) {
-                              _controller.changeBirthDate(
-                                  "${pickedDate.toLocal()}".split(' ')[0]);
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(00, 00, 20, 00),
+                        child: InkWell(
+                          onTap: () {
+                            Utility.showDatePickerDialog().then((pickedDate) {
+                              if (pickedDate != null) {
+                                _controller.changeBirthDate(
+                                    "${pickedDate.toLocal()}".split(' ')[0]);
+                              }
+                            });
+                          },
+                          child: InputDecorator(
+                              decoration: InputDecoration(
+                                  labelText: 'BirthDate',
+                                  labelStyle: TextStyle(color: greyColor)),
+                              child: Obx(() =>
+                                  Text(_controller.selectedBirthDate.value))),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    crossAxisAlignment:
+                        CrossAxisAlignment.start, // Align label to the left
+                    children: [
+                      Text('Designation',
+                          style: TextStyle(
+                              fontSize: 13, color: greyColor)), // Add the label
+                      Obx(
+                        () => CommonDropDown(
+                          items: [
+                            "Select Designation",
+                            "Teacher",
+                            "English",
+                            "hindi"
+                          ],
+                          selectedItem: _controller.selectedDesignation.value,
+                          onChange: (newVal) {
+                            if (newVal != "Select Designation") {
+                              _controller.changeDesignation(newVal!);
                             }
-                          });
-                        },
-                        child: InputDecorator(
-                            decoration: InputDecoration(
-                                labelText: 'BirthDate',
-                                labelStyle: TextStyle(color: greyColor)),
-                            child: Obx(() =>
-                                Text(_controller.selectedBirthDate.value))),
+                            // _controller.changeDesignation(abc!);
+                          },
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start, // Align label to the left
-                  children: [
-                    Text('Designation',
-                        style: TextStyle(
-                            fontSize: 13, color: greyColor)), // Add the label
-                    Obx(
-                      () => CommonDropDown(
-                        items: ["Teacher", "English", "hindi"],
-                        selectedItem: _controller.selectedDesignation.value,
-                        onChange: (abc) {
-                          _controller.changeDesignation(abc!);
-                        },
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -188,7 +197,7 @@ class SignUpScreen extends StatelessWidget {
           onPress: () async {
             if (_key.currentState!.validate()) {
               //  _controller.verifyOtp();
-              Get.to(DashboardScreen());
+              Get.to(CheptarNameScreen());
             }
           },
           title: 'Next'),

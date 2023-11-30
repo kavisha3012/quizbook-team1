@@ -110,11 +110,17 @@ class CongratulationScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Text(
-                'Give Feddback',
-                style: TextStyle(
-                  color: whiteColor,
-                  decoration: TextDecoration.underline,
+              InkWell(
+                onTap: () {
+                  // Handle the click event here.
+                  print('Text clicked!');
+                },
+                child: Text(
+                  'Give Feedback',
+                  style: TextStyle(
+                    color: whiteColor,
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
               )
             ]),

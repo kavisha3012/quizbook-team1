@@ -1,14 +1,14 @@
-import 'package:animaed/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../utils/constants.dart';
+import '../utils/utility.dart';
 
 class CommonTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final String hint;
   final String prefixIcon;
-  final String textInputAction;
+  final bool textInputAction;
   final String suffixIcon;
   final String label;
   final String errorMessage;
@@ -20,6 +20,7 @@ class CommonTextFormField extends StatelessWidget {
   final bool isEmailField;
   final bool initialValue;
   final bool autoFocus;
+  final bool isOTPField;
 
   final List<TextInputFormatter> formatter;
   final bool isMobileNumber;
@@ -37,12 +38,13 @@ class CommonTextFormField extends StatelessWidget {
     this.length = 500,
     this.isDropDown = false,
     required this.onTap,
-    required this.textInputAction,
+    this.textInputAction = true,
     this.isMobileNumber = false,
     this.isEmailField = false,
     this.isReadOnly = false,
     this.initialValue = false,
     this.autoFocus = false,
+    this.isOTPField = false,
   });
 
   final TextStyle labelStyle = TextStyle(
@@ -57,29 +59,33 @@ class CommonTextFormField extends StatelessWidget {
   );
   final TextStyle textStyle = TextStyle(
     fontSize: 14,
-    color: greyColor,
+    color: blackColor,
+    fontWeight: FontWeight.w500,
+  );
+
+  final TextStyle mobileNumberStyle = TextStyle(
+    fontSize: 16,
+    color: blackColor,
     fontWeight: FontWeight.w500,
   );
 
   final InputBorder border = UnderlineInputBorder(
-      borderSide: const BorderSide(color: greyColor, width: 0.0));
+      borderSide: const BorderSide(color: purpleColor, width: 0.0));
   final InputBorder errorBorder = UnderlineInputBorder(
-      borderSide: const BorderSide(color: inputBorderColorError, width: 0.0));
+      borderSide: const BorderSide(color: redColor, width: 0.0));
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       autofocus: autoFocus,
-      onTap: onTap,
+      // onTap: onTap,
       readOnly: isReadOnly,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      // maxLength: length,
       style: textStyle,
       keyboardType: inputType,
       inputFormatters: formatter,
       textInputAction: TextInputAction.next,
       controller: controller,
-
       decoration: InputDecoration(
           floatingLabelBehavior: FloatingLabelBehavior.always,
           counterText: '',
@@ -96,7 +102,9 @@ class CommonTextFormField extends StatelessWidget {
           disabledBorder: border,
           focusedErrorBorder: errorBorder,
           enabledBorder: border,
-          prefix: isMobileNumber ? Text('+91') : SizedBox.shrink(),
+          prefix: isMobileNumber
+              ? Text('+91', style: mobileNumberStyle)
+              : SizedBox.shrink(),
           suffix: isDropDown
               ? Image.asset(
                   suffixIcon,
@@ -116,11 +124,18 @@ class CommonTextFormField extends StatelessWidget {
           } else {
             print('email is valid');
           }
+        } else if (isOTPField) {
+          if (newVal!.isEmpty || newVal!.length < 4) {
+            return errorMessage;
+          } else {
+            print('OTP is valid');
+          }
         } else {
           if (newVal!.isEmpty) {
             return errorMessage;
           }
         }
+
         return null;
       },
     );

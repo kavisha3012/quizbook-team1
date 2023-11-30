@@ -1,8 +1,9 @@
 import 'dart:convert';
-import 'package:animaed/controller/api1_controller.dart';
 import 'package:animaed/models/api_responce.dart';
 import 'package:animaed/models/standard_model.dart';
 import 'package:get/get.dart';
+
+import 'api_controller.dart';
 
 class DashboardController extends GetxController {
   RxList<Standards> standards = RxList();
