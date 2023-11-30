@@ -64,7 +64,7 @@ class CommonTextFormField extends StatelessWidget {
   );
 
   final TextStyle mobileNumberStyle = TextStyle(
-    fontSize: 16,
+    fontSize: 15,
     color: blackColor,
     fontWeight: FontWeight.w500,
   );
@@ -78,7 +78,7 @@ class CommonTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       autofocus: autoFocus,
-      // onTap: onTap,
+      onTap: onTap,
       readOnly: isReadOnly,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       style: textStyle,
