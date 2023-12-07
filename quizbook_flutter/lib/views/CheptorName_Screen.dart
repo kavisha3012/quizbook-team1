@@ -1,64 +1,34 @@
-import 'package:animaed/controller/otp_verification_controller.dart';
+import 'package:animaed/views/SeriesScreen.dart';
 import 'package:animaed/views/SignUp_Screen.dart';
-import 'package:animaed/views/Question_Screen.dart';
-import 'package:animaed/widgets/common_button.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
-class CheptarNameScreen extends StatefulWidget {
-  @override
-  State<CheptarNameScreen> createState() => _CheptarNameScreenState();
-}
+import '../controller/cheptor_controller.dart';
 
-class _CheptarNameScreenState extends State<CheptarNameScreen> {
-  int _currentIndex = 0;
+class CheptarNameScreen extends StatelessWidget {
+  final ChapterController chapterController = Get.put(ChapterController());
+  final _currentIndex = 0.obs;
+
+  CheptarNameScreen({super.key});
 
   void onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
+    _currentIndex.value = index;
   }
 
   @override
   Widget build(BuildContext context) {
     return (Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        title: Text('Science'),
-      ),
-      body: ItemList(),
+      body: Obx(() {
+        return _currentIndex.value == 0
+            ? SeriesScreen()
+            : (_currentIndex.value == 1
+                ? ItemList()
+                : SignUpScreen(mobileNumber: ''));
+      }),
+
+      //ItemList(),
       // Display the selected screen
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: onTabTapped,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              color: Colors.pink,
-              Icons.home,
-            ),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-              color: Colors.pink,
-            ),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
-              color: Colors.pink,
-            ),
-            label: 'Profile',
-          ),
-        ],
-        selectedItemColor: Colors.blue[800],
-        unselectedItemColor: Colors.black,
-        iconSize: 40,
-      ),
     ));
   }
 }
@@ -69,8 +39,8 @@ class ItemList extends StatelessWidget {
       'logo_index': '01',
       'logo_image': 'images/normal_number_bg.png',
       'ch_name': 'Ch_1- Khorak kyathi mle che',
-      'teacher_logo': 'images/logo.png',
-      'teacher_name': 'Shailendrasinh gohil',
+      'teacher_logo': 'images/Logo.png',
+      'teacher_name': 'Abhishek Kumar',
       'question_no': 15,
       'min': 15,
     },
@@ -78,20 +48,61 @@ class ItemList extends StatelessWidget {
       'logo_index': '02',
       'logo_image': 'images/normal_number_bg.png',
       'ch_name': 'Ch_2- Aahar na ghatko',
-      'teacher_logo': 'images/bg.png',
-      'teacher_name': 'Rakesh Patel',
+      'teacher_logo': 'images/Logo.png',
+      'teacher_name': 'Abhishek Kumar',
+      'question_no': 15,
+      'min': 20,
+    },
+
+    {
+      'logo_index': '03',
+      'logo_image': 'images/normal_number_bg.png',
+      'ch_name': 'Ch_3- Resa thi kapad Sudhi ',
+      'teacher_logo': 'images/Logo.png',
+      'teacher_name': 'Abhishek Kumar',
+      'question_no': 15,
+      'min': 20,
+    },
+
+    {
+      'logo_index': '04',
+      'logo_image': 'images/normal_number_bg.png',
+      'ch_name': 'Ch_4- Aahar na ghatko',
+      'teacher_logo': 'images/Logo.png',
+      'teacher_name': 'Abhishek Kumar',
+      'question_no': 15,
+      'min': 20,
+    },
+
+    {
+      'logo_index': '05',
+      'logo_image': 'images/normal_number_bg.png',
+      'ch_name': 'Ch_5- Aahar na ghatko',
+      'teacher_logo': 'images/Logo.png',
+      'teacher_name': 'Abhishek Kumar',
       'question_no': 15,
       'min': 20,
     },
     {
-      'logo_index': '03',
+      'logo_index': '06',
       'logo_image': 'images/normal_number_bg.png',
-      'ch_name': 'Ch_3- Resa  hatko',
-      'teacher_logo': 'images/bg.png',
-      'teacher_name': 'Rakesh Patel',
+      'ch_name': 'Ch_3- Resa thi kapad Sudhi ',
+      'teacher_logo': 'images/Logo.png',
+      'teacher_name': 'Abhishek Kumar',
       'question_no': 15,
       'min': 20,
     },
+
+    {
+      'logo_index': '07',
+      'logo_image': 'images/normal_number_bg.png',
+      'ch_name': 'Ch_3- Resa thi kapad Sudhi ',
+      'teacher_logo': 'images/Logo.png',
+      'teacher_name': 'Abhishek Kumar',
+      'question_no': 15,
+      'min': 20,
+    },
+
     // Add more items as needed
   ];
 
@@ -161,8 +172,10 @@ class CustomItem extends StatelessWidget {
               Row(
                 children: [
                   CircleAvatar(
-                    radius: 15,
-                    backgroundImage: AssetImage(teacherLogo),
+                    radius: 12,
+                    backgroundImage: AssetImage(
+                      teacherLogo,
+                    ),
                   ),
                   SizedBox(
                     width: 10,

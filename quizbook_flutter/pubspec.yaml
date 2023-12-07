@@ -40,6 +40,7 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   flutter_screenutil: ^5.9.0
   intl: ^0.18.1
+  utility: ^1.0.3
 
 flutter_icons:
   android: true

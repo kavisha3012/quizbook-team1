@@ -65,8 +65,12 @@ class LoginScreen extends StatelessWidget {
         bottomNavigationBar: CommonButton(
             onPress: () async {
               if (_key.currentState!.validate()) {
+                final data = _mobileController.text;
+                print(data);
                 // _controller.verifyOtp();
-                Get.to(() => OTPScreen());
+                Get.to(() => OTPScreen(
+                      mobile: data,
+                    ));
               }
             },
             title: 'Send OTP'));

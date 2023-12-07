@@ -1,3 +1,4 @@
+import 'package:animaed/controller/otp_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -8,18 +9,19 @@ import '../widgets/common_button.dart';
 import '../widgets/common_textfield.dart';
 import 'SignUp_Screen.dart';
 
-class OTPScreen extends StatefulWidget {
-  @override
-  _OTPScreenState createState() => _OTPScreenState();
-}
-
-class _OTPScreenState extends State<OTPScreen> {
+class OTPScreen extends StatelessWidget {
+  final OTPController _controller = Get.put(OTPController());
   final _key = GlobalKey<FormState>();
+  final String mobile;
   final TextEditingController _otpController = TextEditingController();
-  // final TextEditingController _mobileController = TextEditingController();
+  final TextEditingController _mobileController = TextEditingController();
+
+  OTPScreen({super.key, required this.mobile});
 
   @override
   Widget build(BuildContext context) {
+    _mobileController.text = mobile;
+    print('mobile ====${mobile}');
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60.0),
@@ -61,9 +63,9 @@ class _OTPScreenState extends State<OTPScreen> {
               CommonButton(
                   onPress: () async {
                     if (_key.currentState!.validate()) {
-                      // _controller.verifyOtp();
+                      print('mobile number =======> ${mobile}');
                       Get.to(() => SignUpScreen(
-                            mobileNumber: '',
+                            mobileNumber: mobile,
                           ));
                     }
                   },

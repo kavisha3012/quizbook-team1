@@ -1,25 +1,31 @@
+import 'package:animaed/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class CommonAppBarScreen extends StatelessWidget {
   final String title;
   final Color backgroundColor;
   final bool centerTitle;
+  final bool isBackArrow;
+  final bool automaticallyImplyLeading;
 
   CommonAppBarScreen({
     required this.title,
     required this.backgroundColor,
     this.centerTitle = true,
+    this.isBackArrow = true,
+    this.automaticallyImplyLeading = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: BackButton(color: Colors.black),
+      leading: isBackArrow ? BackButton(color: blackColor) : SizedBox(),
+      automaticallyImplyLeading: automaticallyImplyLeading,
       backgroundColor: backgroundColor,
       title: Text(
         title,
         style: TextStyle(
-          color: Colors.black, // Customize the text color if needed
+          color: blackColor, // Customize the text color if needed
         ),
       ),
       centerTitle: centerTitle,

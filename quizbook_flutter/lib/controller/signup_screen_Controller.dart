@@ -1,22 +1,34 @@
 import 'package:get/get.dart';
+import 'package:utility/utility.dart';
 
 class SignUpController extends GetxController {
   final RxString selectedGender = 'Select Gender'.obs;
   final RxString selectedBirthDate = 'Select Date'.obs;
   final RxString selectedDesignation = 'Select Designation'.obs;
+  RxList<String> genders = ["Select Gender", "Male", "Female", "Other"].obs;
 
-  // Function to change the selected gender
-  void changeGender(String gender) {
-    selectedGender.value = gender;
+  RxList<String> designations =
+      ["Select Designation", "Teacher", "Engineer", "Principal"].obs;
+
+  void chnageGender(String gender) {
+    if (gender != 'Select') {
+      selectedGender.value = gender;
+      genders.removeFirst();
+      genders.refresh();
+    }
   }
 
-  // Function to change the selected birth date
-  void changeBirthDate(String date) {
-    selectedBirthDate.value = date;
+  void chnageBirthDate(String Date) {
+    selectedBirthDate.value = Date;
   }
 
-  // Function to change the selected designation
-  void changeDesignation(String designation) {
-    selectedDesignation.value = designation;
+  void chnageDesignation(String Designation) {
+    if (Designation != 'Select') {
+      selectedDesignation.value = Designation;
+      designations.removeFirst();
+      designations.refresh();
+    }
+
+    void verifyOtp() {}
   }
 }

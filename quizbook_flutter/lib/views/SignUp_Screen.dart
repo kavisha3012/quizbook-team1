@@ -1,3 +1,4 @@
+import 'package:animaed/views/Dashboard_Page.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +13,12 @@ import '../widgets/common_textfield.dart';
 import 'CheptorName_Screen.dart';
 
 class SignUpScreen extends StatelessWidget {
+  SignUpScreen(
+      {super.key, required this.mobileNumber, this.isBackArrow = false});
+
   final _key = GlobalKey<FormState>();
+
+  final bool isBackArrow;
 
   final String mobileNumber;
 
@@ -26,10 +32,9 @@ class SignUpScreen extends StatelessWidget {
 
   final TextEditingController _mobileController = TextEditingController();
 
-  SignUpScreen({super.key, required this.mobileNumber});
-
   @override
   Widget build(BuildContext context) {
+    _mobileController.text = mobileNumber;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60.0),
@@ -37,6 +42,7 @@ class SignUpScreen extends StatelessWidget {
           title: 'Update Profile',
           backgroundColor: whiteColor, // Customize the color here
           centerTitle: true,
+          isBackArrow: isBackArrow,
         ),
       ),
       body: SingleChildScrollView(
@@ -117,18 +123,11 @@ class SignUpScreen extends StatelessWidget {
                               width: 900,
                               child: Obx(
                                 () => CommonDropDown(
-                                    items: const [
-                                      "Select Gender",
-                                      "Male",
-                                      "Female",
-                                      "Other"
-                                    ],
+                                    items: _controller.genders,
                                     selectedItem:
                                         _controller.selectedGender.value,
                                     onChange: (newVal) {
-                                      if (newVal != "Select Gender") {
-                                        _controller.changeGender(newVal!);
-                                      }
+                                      _controller.chnageGender(newVal!);
                                     }),
                               ),
                             ),
@@ -143,7 +142,7 @@ class SignUpScreen extends StatelessWidget {
                           onTap: () {
                             Utility.showDatePickerDialog().then((pickedDate) {
                               if (pickedDate != null) {
-                                _controller.changeBirthDate(
+                                _controller.chnageBirthDate(
                                     "${pickedDate.toLocal()}".split(' ')[0]);
                               }
                             });
@@ -170,18 +169,10 @@ class SignUpScreen extends StatelessWidget {
                               fontSize: 13, color: greyColor)), // Add the label
                       Obx(
                         () => CommonDropDown(
-                          items: [
-                            "Select Designation",
-                            "Teacher",
-                            "English",
-                            "hindi"
-                          ],
+                          items: _controller.designations,
                           selectedItem: _controller.selectedDesignation.value,
-                          onChange: (newVal) {
-                            if (newVal != "Select Designation") {
-                              _controller.changeDesignation(newVal!);
-                            }
-                            // _controller.changeDesignation(abc!);
+                          onChange: (designation) {
+                            _controller.chnageDesignation(designation!);
                           },
                         ),
                       ),
@@ -195,9 +186,19 @@ class SignUpScreen extends StatelessWidget {
       ),
       bottomNavigationBar: CommonButton(
           onPress: () async {
-            if (_key.currentState!.validate()) {
+            if (_key.currentState!.validate() &&
+                _controller.selectedBirthDate.value != 'Select Date') {
               //  _controller.verifyOtp();
-              Get.to(CheptarNameScreen());
+              Get.offAll(DashboardScreen());
+            } else {
+              // Show Snackbar if the date is not selected
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Please select date',
+                      style: TextStyle(fontSize: 15)),
+                  duration: Duration(seconds: 2),
+                ),
+              );
             }
           },
           title: 'Next'),
