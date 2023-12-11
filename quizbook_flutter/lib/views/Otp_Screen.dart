@@ -1,8 +1,8 @@
-import 'package:animaed/controller/otp_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import '../controller/otp_verification_controller.dart';
 import '../utils/constants.dart';
 import '../widgets/common_appbar.dart';
 import '../widgets/common_button.dart';

@@ -1,11 +1,13 @@
 import 'package:animaed/views/CheptorName_Screen.dart';
 import 'package:animaed/views/Congratulation_Screen.dart';
 import 'package:animaed/views/Otp_Screen.dart';
+import 'package:animaed/views/Question_Screen.dart';
 import 'package:animaed/views/SignUp_Screen.dart';
 import 'package:animaed/views/Dashboard_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'views/Login_Screen.dart';
+import 'views/SeriesScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,6 +22,6 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        home: LoginScreen());
+        home: DashboardScreen());
   }
 }

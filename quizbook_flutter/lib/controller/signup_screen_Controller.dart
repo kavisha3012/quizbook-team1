@@ -11,7 +11,7 @@ class SignUpController extends GetxController {
       ["Select Designation", "Teacher", "Engineer", "Principal"].obs;
 
   void chnageGender(String gender) {
-    if (gender != 'Select') {
+    if (gender != 'Select Gender') {
       selectedGender.value = gender;
       genders.removeFirst();
       genders.refresh();
@@ -23,7 +23,7 @@ class SignUpController extends GetxController {
   }
 
   void chnageDesignation(String Designation) {
-    if (Designation != 'Select') {
+    if (Designation != 'Select Designation') {
       selectedDesignation.value = Designation;
       designations.removeFirst();
       designations.refresh();

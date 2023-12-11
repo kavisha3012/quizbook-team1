@@ -70,7 +70,11 @@ class CommonTextFormField extends StatelessWidget {
   );
 
   final InputBorder border = UnderlineInputBorder(
+      borderSide: const BorderSide(color: greyColor, width: 0.0));
+
+  final InputBorder focusBorder = UnderlineInputBorder(
       borderSide: const BorderSide(color: purpleColor, width: 0.0));
+
   final InputBorder errorBorder = UnderlineInputBorder(
       borderSide: const BorderSide(color: redColor, width: 0.0));
 
@@ -97,7 +101,7 @@ class CommonTextFormField extends StatelessWidget {
             style: labelStyle,
           ),
           errorBorder: errorBorder,
-          focusedBorder: border,
+          focusedBorder: focusBorder,
           border: border,
           disabledBorder: border,
           focusedErrorBorder: errorBorder,

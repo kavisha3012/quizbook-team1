@@ -73,20 +73,6 @@ class DashboardScreen extends StatelessWidget {
               ),
               label: 'Profile',
             ),
-            // BottomNavigationBarItem(
-            //   icon: Icon(
-            //     Icons.watch_later_outlined,
-            //    // color: Colors.grey,
-            //   ),
-            //   label: 'next',
-            // ),
-            // BottomNavigationBarItem(
-            //   icon: Icon(
-            //     Icons.more_vert_rounded,
-            //     //color: Colors.grey,
-            //   ),
-            //   label: 'Menu',
-            // ),
           ],
         ),
       ),
